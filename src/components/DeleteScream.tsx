@@ -18,6 +18,7 @@ const DeletScream = ({screamId}: any) => {
     const handleOpen = () => {
         setOpen(true);
     }
+
     // close dialog
     const handleClose = () => {
         setOpen(false);
@@ -25,6 +26,7 @@ const DeletScream = ({screamId}: any) => {
 
     // necesarios para los Reducer
     const dispatch = useDispatch();
+    
     // delete scream
     const deleteCurrentScream = () => {
         console.log(screamId);

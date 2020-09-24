@@ -17,16 +17,13 @@ import { unlikeScream, likeScream } from '../redux/actions/dataActions';
 import DeleteScream from './DeleteScream';
 
 const Scream = (props: { scream: any, index: any }) => {
+
     dayjs.extend(relativeTime);
-    // necesarios para los Reducer
-    const dispatch = useDispatch();
+    // need for Reducer
+    const dispatch = useDispatch();  
     // get user to access likes and credentials
     let user: any = useSelector((store: any) => store.user);
-    /* accedemos al scream individual
-     porque es la unica manera de renderizarlo cuando se hace un like/deslike 
-     */
-    //let scream: any = useSelector((store: any) => store.data.screams[props.index]);
-    // auth
+    // get auth
     const authenticated = useSelector((store: any) => store.user.authenticated);
 
     // check and set liked scream
@@ -72,7 +69,6 @@ const Scream = (props: { scream: any, index: any }) => {
         )
  
     // delete button
-    console.log(props.scream.userHandle, user.credentials.handle);
     const deleteButton = authenticated && props.scream.userHandle === user.credentials.handle?
     (
         <DeleteScream screamId={props.scream.screamId}/>
@@ -90,7 +86,7 @@ const Scream = (props: { scream: any, index: any }) => {
                             <h5 className="card-title">
                                 <Typography component={Link} to={`/users/${props.scream.userHandle}`}>{props.scream.userHandle}</Typography >
                             </h5>
-                            <p>{deleteButton}</p>
+                            <p className="delete-button">{deleteButton}</p>
                             <p className="card-text">
                                 {dayjs(props.scream.createdAt).fromNow()}<br />
                                 {props.scream.body}<br />

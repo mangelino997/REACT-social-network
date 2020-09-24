@@ -10,6 +10,7 @@ import { MyButton } from '../util/MyButton';
 import HomeIcon from '@material-ui/icons/Home';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
+import PostScream from './PostScream';
 
 const Navbar = () => {
 
@@ -21,9 +22,10 @@ const Navbar = () => {
                 <Toolbar className="nav-container">
                     {authenticated ? (
                         <Fragment>
-                            <MyButton tip="Post screams">
+                            <PostScream />
+                            {/* <MyButton tip="Post screams">
                                 <AddCircleIcon color="action"/>
-                            </MyButton>
+                            </MyButton> */}
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon color="action"/>
