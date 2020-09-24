@@ -10,12 +10,34 @@ body{
 }
 .card {
     display: flex;
-    background-color: #678BF2;
+    background-color: #FFFFFF;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 } 
 .card-title > a {
     text-decoration: none;
+    color: black;
+}
+.profile-image{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    max-width: 100%;
+    border-radius: 50%;
+}
+.profile-details{
+    text-align: center;
+}
+.wrapper-image{
+    text-align: center;
+    position: relative;
+}
+.wrapper-image > button {
+    position: absolute;
+    top: 80%;
+    left: 70%;
+}
+.nav-container svg {
     color: #FFFFFF;
 }

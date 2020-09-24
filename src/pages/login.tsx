@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import iconGlobe from '../images/globo-max.png';
 import { useForm } from "react-hook-form";
-import axios from 'axios';
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
+// redux staff
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 type Inputs = {
     email: string,
@@ -11,28 +13,28 @@ type Inputs = {
 };
 const Login = () => {
 
-    var loading: boolean = false;
-    let history = useHistory();
+    // var loading: boolean = false;
     const [errorGeneral, setErrorGeneral] = useState<any>({});
-    const { register, handleSubmit, watch, errors } = useForm<Inputs>();
+    const { register, handleSubmit, errors } = useForm<Inputs>();
+    // necesarios para los Reducer
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const onSubmit = async (data: Inputs) => {
-        loading = true;
-        try {
-             let res = await axios.post('login', data);
-             localStorage.setItem('Token',`Bearer ${res.data.token}` );
-            // console.log(res);
-            setTimeout(() => {
-                loading = false;
-                history.push('/'); // go to homepage
-            }, 1200)
-        } catch (error) {
-            console.log(error.response.data); //data.general | data.email | data.password
-
-            setErrorGeneral(error.response.data);
-        }
+    const onSubmit = (data: Inputs) => {
+        //loading = true;
+        dispatch(loginUser(data, history));
     }
-    //console.log(watch("email")) // watch input value by passing the name of it
+ 
+    // useSelector es un Hook que nos permite extraer datos del store de Redux 
+    //utilizando una función selectora, seria como el componentWillReceiveProps (sin hooks)
+    const p = useSelector((store: any) => store.UI);
+    
+    // si cambia el estado en uiReducer y es un error lo muestra
+    useEffect(() => {
+        if(p.errors?.general){
+            setErrorGeneral(p.errors)
+        }
+    }, [p])
     return (
         <Fragment>
             <div className="row">
@@ -64,9 +66,8 @@ const Login = () => {
                             {errorGeneral && <span className="text-danger text-small d-block">
                                 {errorGeneral.general}
                             </span>}
-                            <button className="btn btn-lg btn-primary btn-sm" 
-                            type="submit" disabled={loading}>Login
-                                {loading && (<CircularProgress size={30}/>)}
+                            <button className="btn btn-lg btn-primary btn-sm"
+                                type="submit" >Login
                             </button><br />
                             <span>Don't have an account?</span><br />
                             <Link to="/signup">Sign in here</Link>

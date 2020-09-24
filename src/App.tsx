@@ -14,20 +14,30 @@ import jwt_decode from "jwt-decode";
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-
+import { SET_AUTHENTICATED} from './redux/types';
+import { logoutUser, getUserData } from './redux/actions/userActions';
+import axios from 'axios';
+import { getScreams } from './redux/actions/dataActions';
 
 // get token
 const token = localStorage.getItem("Token");
-let authenticated: boolean;
+store.dispatch(getScreams());
 if (token) {
   const decodeToken: any = jwt_decode(token);
-  if (decodeToken?.exp * 1000 < Date.now()) // verificamos si expiro el token
+  if (decodeToken.exp * 1000 < Date.now()) // verificamos si expiro el token
   {
-    window.location.href = '/login';
-    authenticated = false;
+    console.log("expiro");
+    //window.location.href = '/login';
+    store.dispatch(logoutUser());
+    
   } else {
-    authenticated = true;
+    store.dispatch({type: SET_AUTHENTICATED});
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(getUserData());
+
   }
+}else{
+  // window.location.href = '/login';
 }
 
 function App() {
@@ -39,8 +49,8 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={home} ></Route>
-            <AuthRoute path="/login" component={login} authenticated={authenticated} />
-            <AuthRoute path="/signup" component={signup} authenticated={authenticated} />
+            <AuthRoute path="/login" component={login} />
+            <AuthRoute path="/signup" component={signup} />
 
             {/* <Route path="/login" component={login} authenticated={authenticated}></Route>
             <Route path="/signup" component={signup} authenticated={authenticated}></Route> */}
