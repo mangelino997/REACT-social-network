@@ -25,6 +25,11 @@ export const dataReducer = (state: any = initialState, action: any) => {
         case SET_SCREAMS:
             return {
                 ...state,
+                screams: action.payload
+            };
+        case SET_SCREAM:
+            return {
+                ...state,
                 screams: action.payload,
                 loading: false
             };
@@ -35,6 +40,7 @@ export const dataReducer = (state: any = initialState, action: any) => {
                 (scream: any) => scream.screamId === action.payload.screamId
             );
             state.screams[index] = action.payload;
+            // is for update likes scream dialog
             if (state.scream.screamId === action.payload.screamId) {
                 state.scream = action.payload;
             }

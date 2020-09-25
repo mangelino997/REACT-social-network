@@ -42,7 +42,7 @@ export const getScream = (screamId: string) => (dispatch: any) => {
                 type: SET_SCREAM,
                 payload: res.data
             });
-            dispatch({ type: STOP_LOADING_UI });
+            // dispatch({ type: STOP_LOADING_UI });
         })
         .catch((err) => console.log(err));
 };

@@ -51,10 +51,6 @@ const Profile = () => {
         dispatch(logoutUser());
     }
 
-    // 
-    // useEffect(()=>{
-
-    // }, [userCredentials])
     return (
         !loadingUser ?
             authenticated ?
@@ -70,14 +66,14 @@ const Profile = () => {
                                     <EditIcon color="primary" />
                                 </MyButton>
                             </div>
-                            <hr />
+                            <hr className="invisible-separator" />
                             <div className="profile-details">
                                 <MuiLink
                                     component={Link} to={`/users/${userCredentials.handle}`}
                                     variant="h5">
                                     @{userCredentials.handle}
                                 </MuiLink>
-                                <br />
+                                <hr className="invisible-separator" />
                                 {userCredentials.bio &&
                                     <Typography>
                                         {userCredentials.bio}
@@ -96,10 +92,11 @@ const Profile = () => {
                                             {' '}{userCredentials.website}
                                         </a>
                                     </Fragment>
-                                }<br />
+                                }
+                                <hr className="invisible-separator" />
                                 <CalendarToday />
                                 {' '}<span>Joined {dayjs(userCredentials.createdAt).format('MMM YYYY')}</span>
-                                <br />
+                                <hr className="invisible-separator" />
                                 <MyButton onClick={handleLogout} tip="Logout">
                                     <KeyboardReturn color="primary" />
                                 </MyButton>

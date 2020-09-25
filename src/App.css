@@ -62,3 +62,17 @@ body{
     left: 91%;
     top: 6%
 }
+/* */
+.invisible-separator{
+    border: 'none';
+    margin: 4
+}
+.dialog-content {
+    padding: 20;
+}
+
+/* Dialog detail */
+.expand-button {
+    position: absolute;
+    left: 90%;
+}

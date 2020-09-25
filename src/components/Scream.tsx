@@ -15,12 +15,14 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { unlikeScream, likeScream } from '../redux/actions/dataActions';
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
+import LikeButton from './LikeButton';
 
 const Scream = (props: { scream: any, index: any }) => {
 
     dayjs.extend(relativeTime);
     // need for Reducer
-    const dispatch = useDispatch();  
+    const dispatch = useDispatch();
     // get user to access likes and credentials
     let user: any = useSelector((store: any) => store.user);
     // get auth
@@ -45,34 +47,34 @@ const Scream = (props: { scream: any, index: any }) => {
     }
 
     // like button
-    const likeButton = !authenticated ?
-        (
-            <MyButton tip="Like">
-                <Link to="/login">
-                    <FavoriteBorder color="secondary"></FavoriteBorder>
-                </Link>
-            </MyButton>
-        ) :
-        (
-            likedScream() ?
-                (
-                    <MyButton tip="Undo like" onClick={unlikeCurrentScream}>
-                        <FavoriteIcon color="secondary"></FavoriteIcon>
-                    </MyButton>
-                )
-                :
-                (
-                    <MyButton tip="Like" onClick={likeCurrentScream}>
-                        <FavoriteBorder color="secondary"></FavoriteBorder >
-                    </MyButton>
-                )
-        )
- 
+    // const likeButton = !authenticated ?
+    //     (
+    //         <MyButton tip="Like">
+    //             <Link to="/login">
+    //                 <FavoriteBorder color="secondary"></FavoriteBorder>
+    //             </Link>
+    //         </MyButton>
+    //     ) :
+    //     (
+    //         likedScream() ?
+    //             (
+    //                 <MyButton tip="Undo like" onClick={unlikeCurrentScream}>
+    //                     <FavoriteIcon color="secondary"></FavoriteIcon>
+    //                 </MyButton>
+    //             )
+    //             :
+    //             (
+    //                 <MyButton tip="Like" onClick={likeCurrentScream}>
+    //                     <FavoriteBorder color="secondary"></FavoriteBorder >
+    //                 </MyButton>
+    //             )
+    //     )
+
     // delete button
-    const deleteButton = authenticated && props.scream.userHandle === user.credentials.handle?
-    (
-        <DeleteScream screamId={props.scream.screamId}/>
-    ) : null;
+    const deleteButton = authenticated && props.scream.userHandle === user.credentials.handle ?
+        (
+            <DeleteScream screamId={props.scream.screamId} />
+        ) : null;
 
     return (
         <div>
@@ -90,11 +92,15 @@ const Scream = (props: { scream: any, index: any }) => {
                             <p className="card-text">
                                 {dayjs(props.scream.createdAt).fromNow()}<br />
                                 {props.scream.body}<br />
-                                {likeButton}Likes: {props.scream.likeCount}
+                                <LikeButton screamId={props.scream.screamId} />
+                                Likes: {props.scream.likeCount}
                                 <MyButton tip="Comments">
                                     <ChatIcon color="secondary" />
                                 </MyButton>
                             Comments: {props.scream.commentCount}
+                                <span className="expand-button">
+                                    <ScreamDialog scream={props.scream} />
+                                </span>
                             </p>
 
                         </div>

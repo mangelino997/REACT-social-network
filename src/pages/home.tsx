@@ -13,7 +13,8 @@ const Home = () => {
     const [screams, setScreams] = useState<any[]>([]);
     const [cp, setCp] = useState<any[]>([]);
     let Currscreams: any = [];
-    
+    // get loading
+    const loading = useSelector((store: any) => store.UI.loading);
     // subscribe (listeners screams in the store)
     store.subscribe(() => {
         Currscreams = store.getState().data.screams;
@@ -21,8 +22,10 @@ const Home = () => {
         setScreams(cp);
     });
 
-    // get loading
-    let loading = useSelector((store: any) => store.data.loading);
+    // useEffect(() =>{
+    //     return () => setScreams([]);   
+    // })
+    
     return (
         <Fragment>
             <div className="container">
