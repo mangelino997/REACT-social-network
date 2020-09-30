@@ -25,24 +25,20 @@ const Profile = () => {
     const loadingUser = useSelector((store: any) => store.user.loading);
     const authenticated = useSelector((store: any) => store.user.authenticated);
     const userCredentials = useSelector((store: any) => store.user.credentials);
-    // necesarios para los Reducer
+    // necessary for the Reducer
     const dispatch = useDispatch();
 
     // handle image change
     const handleImageChange = (event: any) => {
-
-        const image = event.target.files[0];
-        console.log(image);
+        const image = event.target.files[0]; // la posicion 0 tiene el primer archivo cargado
         const formData: any = new FormData();
         formData.append('image', image, image.name); // el append nos pide 3 argumentos
-
         dispatch(uploadImage(formData));
     }
 
     // handle edit picture
     const handleEditPicture = () => {
         const fileInput = document.getElementById("imageInput");
-        console.log("esxd");
         fileInput?.click();
     }
 
@@ -78,7 +74,6 @@ const Profile = () => {
                                     <Typography>
                                         {userCredentials.bio}
                                     </Typography>}
-
                                 {userCredentials.location &&
                                     <Fragment>
                                         <LocationOn />
@@ -88,7 +83,10 @@ const Profile = () => {
                                 {userCredentials.website &&
                                     <Fragment>
                                         <LinkIcon />
-                                        <a href={userCredentials.website} target="_blank" rel="Website user logged">
+                                        <a 
+                                        href={userCredentials.website} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer">
                                             {' '}{userCredentials.website}
                                         </a>
                                     </Fragment>

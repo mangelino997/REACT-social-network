@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
 import iconGlobe from '../images/globo-max.png';
-import { useForm  } from "react-hook-form";
-import axios from 'axios';
-import { Redirect, Link, useHistory } from "react-router-dom";
+// Icons
 import CircularProgress from '@material-ui/core/CircularProgress';
 // redux staff
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,7 +30,6 @@ const Signup = () => {
 
     // check both passwords
     const checkPassword = (e: any) => {
-        console.log(e, getValues("password"));
         if (e !== getValues("password")) {
             setError("confirmPassword", {
                 type: "manual"
@@ -45,7 +44,7 @@ const Signup = () => {
     //utilizando una función selectora, seria como el componentWillReceiveProps (sin hooks)
     const p = useSelector((store: any) => store.UI);
     
-    // si cambia el estado en uiReducer y es un error lo muestra
+    // handle change errors
     useEffect(() => {
         if(p.errors?.general){
             setErrorGeneral(p.errors)
@@ -108,7 +107,7 @@ const Signup = () => {
                                 {loading && (<CircularProgress size={30} />)}
                             </button><br />
                             <span>Have an account?</span><br />
-                            <Link to="/signup">Login here</Link>
+                            <Link to="/login">Login here</Link>
                         </form>
                     </div>
                 </div>

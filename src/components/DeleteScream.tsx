@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-
+// Redux
 import { deleteScream } from '../redux/actions/dataActions';
 import { MyButton } from '../util/MyButton';
 import { useDispatch } from 'react-redux';
@@ -24,12 +24,11 @@ const DeletScream = ({screamId}: any) => {
         setOpen(false);
     }
 
-    // necesarios para los Reducer
+    // necessary for the Reducer
     const dispatch = useDispatch();
     
-    // delete scream
+    // handle delete scream
     const deleteCurrentScream = () => {
-        console.log(screamId);
         dispatch(deleteScream(screamId));
         setOpen(false);
     }

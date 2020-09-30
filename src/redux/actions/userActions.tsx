@@ -4,7 +4,8 @@ import {
     CLEAR_ERRORS,
     LOADING_UI,
     SET_UNAUTHENTICATED,
-    LOADING_USER
+    LOADING_USER,
+    MARK_NOTIFICATIONS_READ
 } from '../types'
 import axios from 'axios';
 
@@ -49,7 +50,6 @@ export const signupUser = (newUserData: any, history: any) =>
     }
 
 export const logoutUser = () => (dispatch: any) => {
-    console.log("logout");
     localStorage.removeItem("Token");
     delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
@@ -65,7 +65,6 @@ export const getUserData = () => (dispatch: any) => {
     dispatch({ type: LOADING_USER });
     axios.get('/user')
         .then((res: any) => {
-            console.log(res.data);
             dispatch({
                 type: SET_USER,
                 payload: res.data
@@ -76,7 +75,6 @@ export const getUserData = () => (dispatch: any) => {
 
 // upload image profile user
 export const uploadImage = (formData: any) => (dispatch: any) => {
-    console.log("entra");
     dispatch({ type: LOADING_USER });
     axios.post('/user/img', formData)
         .then(() => {
@@ -93,4 +91,15 @@ export const editUserDetails = (userDetail: any) => (dispatch: any) => {
         dispatch(getUserData());
     })
     .catch(err => console.log(err));
+}
+
+// notifications
+export const markNotificationsRead = (notificationsIds: any) => (dispatch: any) =>{
+    axios.post('/notifications/', notificationsIds)
+    .then(() =>{
+        dispatch({
+            type: MARK_NOTIFICATIONS_READ
+        })
+    })
+    .catch((err: any) => console.log(err))
 }

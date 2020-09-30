@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import iconGlobe from '../images/globo-max.png';
 import { useForm } from "react-hook-form";
+import iconGlobe from '../images/globo-max.png';
 import { Link, useHistory } from "react-router-dom";
-import CircularProgress from '@material-ui/core/CircularProgress';
+//import CircularProgress from '@material-ui/core/CircularProgress';
 // redux staff
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
@@ -29,7 +29,7 @@ const Login = () => {
     //utilizando una función selectora, seria como el componentWillReceiveProps (sin hooks)
     const p = useSelector((store: any) => store.UI);
     
-    // si cambia el estado en uiReducer y es un error lo muestra
+    // handle change errors
     useEffect(() => {
         if(p.errors?.general){
             setErrorGeneral(p.errors)

@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { editUserDetails } from '../redux/actions/userActions';
@@ -9,9 +10,9 @@ import {
     DialogContent,
     DialogTitle
 } from '@material-ui/core';
+// Components
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import { useForm } from 'react-hook-form';
 import { MyButton } from '../util/MyButton';
 
 let detail = {
@@ -28,15 +29,14 @@ const EditDetails = () => {
 
     const [open, setOpen] = useState(false);
     const [userDetail, setUSerDetail] = useState(detail);
-    const { register, handleSubmit, errors } = useForm<InputsTypes>();
+    const { register, handleSubmit } = useForm<InputsTypes>();
     // useSelector es un Hook que nos permite extraer datos del store de Redux 
     const userCredentials = useSelector((store: any) => store.user.credentials);
-    // necesarios para los Reducer
+    // necessary for the Reducer
     const dispatch = useDispatch();
 
     // handle onsubmit
     const onSubmit = (data: InputsTypes) => {
-        console.log(data);
         dispatch(editUserDetails(data));
     }
 
@@ -109,7 +109,6 @@ const EditDetails = () => {
                             </Button>
                         </DialogActions>
                     </form>
-
                 </DialogContent>
             </Dialog>
         </Fragment>

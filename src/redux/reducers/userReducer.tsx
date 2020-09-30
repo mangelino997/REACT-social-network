@@ -1,3 +1,4 @@
+import { MARK_NOTIFICATIONS_READ } from '../types';
 import {
     SET_USER,
     SET_AUTHENTICATED,
@@ -55,6 +56,11 @@ export const userReducer = (state: any = initialState, action: any) => {
                     (like: any) => like.screamId !== action.payload.screamId
                 )
             }
+        case MARK_NOTIFICATIONS_READ:
+            state.notifications.forEach((not:any) => (not.read = true));
+            return {
+                ...state
+            };
         default:
             return state;
     }

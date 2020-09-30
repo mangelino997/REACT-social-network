@@ -18,15 +18,15 @@ import { SET_AUTHENTICATED} from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userActions';
 import axios from 'axios';
 import { getScreams } from './redux/actions/dataActions';
+import User from './pages/user';
 
 // get token
 const token = localStorage.getItem("Token");
-store.dispatch(getScreams());
+//store.dispatch(getScreams());
 if (token) {
   const decodeToken: any = jwt_decode(token);
   if (decodeToken.exp * 1000 < Date.now()) // verificamos si expiro el token
   {
-    console.log("expiro");
     //window.location.href = '/login';
     store.dispatch(logoutUser());
     
@@ -51,7 +51,12 @@ function App() {
             <Route exact path="/" component={home} ></Route>
             <AuthRoute path="/login" component={login} />
             <AuthRoute path="/signup" component={signup} />
-
+            <Route exact path="/users/:handleParam" component={User} ></Route>
+            <Route
+                  exact
+                  path="/users/:handleParam/scream/:screamIdParam"
+                  component={User}
+                />
             {/* <Route path="/login" component={login} authenticated={authenticated}></Route>
             <Route path="/signup" component={signup} authenticated={authenticated}></Route> */}
           </Switch>

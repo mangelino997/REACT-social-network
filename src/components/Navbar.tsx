@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+// Redux
 import { useSelector } from 'react-redux';
+// Components
+import PostScream from './PostScream';
+import Notifications from './Notifications';
 import { MyButton } from '../util/MyButton';
 // Icons
 import HomeIcon from '@material-ui/icons/Home';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
-import PostScream from './PostScream';
 
 const Navbar = () => {
 
+    // get data from store
     const authenticated = useSelector((store: any) => store.user.authenticated);
 
     return (
@@ -23,18 +25,12 @@ const Navbar = () => {
                     {authenticated ? (
                         <Fragment>
                             <PostScream />
-                            {/* <MyButton tip="Post screams">
-                                <AddCircleIcon color="action"/>
-                            </MyButton> */}
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon color="action"/>
                                 </MyButton>
                             </Link>
-                            <MyButton tip="Notifications">
-                                <NotificationImportantIcon color="action"/>
-                            </MyButton>
-                            {/* <Notifications /> */}
+                            <Notifications />
                         </Fragment>
                     ) : (
                             <Fragment>
@@ -51,13 +47,6 @@ const Navbar = () => {
                         )}
                 </Toolbar>
             </AppBar>
-            {/* <AppBar>
-                <Toolbar className="nav-container">
-                    <Button color="inherit" component={Link} to="/login">Login</Button>
-                    <Button color="inherit" component={Link} to="/">Home</Button>
-                    <Button color="inherit" component={Link} to="/signup">Signup</Button>
-                </Toolbar>
-            </AppBar> */}
         </Fragment>
     )
 }
