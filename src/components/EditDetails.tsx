@@ -29,7 +29,7 @@ const EditDetails = () => {
 
     const [open, setOpen] = useState(false);
     const [userDetail, setUSerDetail] = useState(detail);
-    const { register, handleSubmit } = useForm<InputsTypes>();
+    const { register, handleSubmit, reset } = useForm<InputsTypes>();
     // useSelector es un Hook que nos permite extraer datos del store de Redux 
     const userCredentials = useSelector((store: any) => store.user.credentials);
     // necessary for the Reducer
@@ -51,6 +51,7 @@ const EditDetails = () => {
 
     // close dialog
     const handleClose = () => {
+        reset();
         setOpen(false);
     }
 
@@ -98,15 +99,24 @@ const EditDetails = () => {
                                 maxLength: 40
                             })} />
                         <DialogActions>
-                            <Button type="submit"
+                            {/* <Button 
                                 color="primary"
-                                onClick={(handleClose)}>
+                                onClick={handleClose}>
                                 Cancel
                             </Button>
                             <Button type="submit"
                                 color="primary">
                                 Save
-                            </Button>
+                            </Button> */}
+                            <button onClick={handleClose}
+                            type="button"
+                                className="btn btn-login btn-secondary ">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                className="btn btn-login btn-primary " >
+                                Save
+                            </button>
                         </DialogActions>
                     </form>
                 </DialogContent>

@@ -53,7 +53,7 @@ const User = () => {
         <>
             <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
-                    <h3>My Screams</h3>
+                <h3 className="title-login mb-3 font-weight-normal">My screams</h3>
                     <hr className="invisible-separator" />
                     {screamsMarkup}
                 </Grid>

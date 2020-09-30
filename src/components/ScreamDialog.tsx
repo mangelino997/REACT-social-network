@@ -6,7 +6,6 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    Grid,
     Typography
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -43,15 +42,15 @@ const ScreamDialog = (props: { scream: any, openDialog?: boolean }) => {
     const location = useLocation();
     // handleOpen dialog
     const handleOpen = () => {
-        let oldPath =  '/#'+location.pathname;        
+        let oldPath = '/#' + location.pathname;
         const newPath = `/#/users/${userHandle}/scream/${screamId}`;
 
         // si son iguales es porque entro por las notificaciones, se modifica entonces
-        if(oldPath === newPath){
+        if (oldPath === newPath) {
             oldPath = `/#/users/${userHandle}`;
         }
         window.history.pushState(null, '', newPath);
-        setUrl({oldPath, newPath});
+        setUrl({ oldPath, newPath });
         setOpen(true);
         dispatch(getScream(scream.screamId));
     }
@@ -59,10 +58,10 @@ const ScreamDialog = (props: { scream: any, openDialog?: boolean }) => {
     // handleClose dialog
     const handleClose = () => {
         let urlCorrect = url.oldPath;
-        if(url.oldPath === '/#/') 
-        urlCorrect = '/';
+        if (url.oldPath === '/#/')
+            urlCorrect = '/';
         else
-        urlCorrect = `/#/users/${userHandle}`;
+            urlCorrect = `/#/users/${userHandle}`;
         window.history.pushState(null, '', urlCorrect);
         setOpen(false);
         dispatch(clearErrors());
@@ -80,38 +79,56 @@ const ScreamDialog = (props: { scream: any, openDialog?: boolean }) => {
         (
             <CircularProgress size={200} />
         ) : (
-            <Grid container spacing={2}>
-                <Grid item sm={5}>
-                    <img src={scream.userImage} alt="Profile" className="profile-image" />
-                </Grid>
-                <Grid item sm={7}>
-                    <Typography
-                        component={Link}
-                        color="primary"
-                        variant="h5"
-                        to={`/users/${userCredentials.handle}`}
-                    >
-                        @{userCredentials.handle}
-                    </Typography>
-                    <hr className="invisible-separator" />
-                    <Typography variant="body2" color="secondary">
-                        {dayjs(userCredentials.createdAt).format('h:mm a, MMM DD YYYY')}
-                    </Typography>
-                    <hr className="invisible-separator" />
-                    <Typography variant="body1" >
-                        {scream.body}
-                    </Typography>
-                    <LikeButton screamId={scream.screamId} />
+
+            <>
+                {/* <div className="container container-margin"> */}
+                <div className="row py-1">
+                    <div className="col-md-5">
+                        <img src={scream.userImage} alt="Profile" className="profile-image" />
+                    </div>
+                    <div className="col-md-7">
+                        <Typography
+                            component={Link}
+                            color="primary"
+                            variant="h5"
+                            to={`/users/${userCredentials.handle}`}
+                        >
+                            @{userCredentials.handle}
+                        </Typography>
+                        <hr className="invisible-separator" />
+                        <Typography variant="body2" color="secondary">
+                            {dayjs(userCredentials.createdAt).format('h:mm a, MMM DD YYYY')}
+                        </Typography>
+                        <hr className="invisible-separator" />
+                        <Typography variant="body1" >
+                            {scream.body}
+                        </Typography>
+                        <div className="row">
+                            <div className="col-md-5">
+                                <LikeButton screamId={scream.screamId} />
                                 Likes: {scream.likeCount}
-                    <MyButton tip="Comments">
-                        <ChatIcon color="secondary" />
-                    </MyButton>
+
+                            </div>
+                            <div className="col-md-7">
+                                <MyButton tip="Comments">
+                                    <ChatIcon color="secondary" />
+                                </MyButton>
                             Comments: {scream.commentCount}
-                </Grid><br></br>
-                <hr></hr>
-                <CommentForm screamId={scream.screamId} />
-                <Comments id={scream.screamId} />
-            </Grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <CommentForm screamId={scream.screamId} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <Comments id={scream.screamId} />
+                    </div>
+                </div>
+            </>
         );
     return (
         <Fragment>
@@ -123,7 +140,6 @@ const ScreamDialog = (props: { scream: any, openDialog?: boolean }) => {
                 onClose={handleClose}
                 fullWidth
                 maxWidth="sm">
-
                 <DialogContent className="dialog-content">
                     {dialogMarkUp}
                 </DialogContent>

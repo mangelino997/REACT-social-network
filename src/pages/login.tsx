@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import iconGlobe from '../images/globo-max.png';
+import userNoImg from '../images/no-img.png';
 import { Link, useHistory } from "react-router-dom";
 //import CircularProgress from '@material-ui/core/CircularProgress';
 // redux staff
@@ -24,14 +24,14 @@ const Login = () => {
         //loading = true;
         dispatch(loginUser(data, history));
     }
- 
+
     // useSelector es un Hook que nos permite extraer datos del store de Redux 
     //utilizando una función selectora, seria como el componentWillReceiveProps (sin hooks)
     const p = useSelector((store: any) => store.UI);
-    
+
     // handle change errors
     useEffect(() => {
-        if(p.errors?.general){
+        if (p.errors?.general) {
             setErrorGeneral(p.errors)
         }
     }, [p])
@@ -39,26 +39,30 @@ const Login = () => {
         <Fragment>
             <div className="row">
                 <div className="col"></div>
-                <div className="col-md-6">
-                    <div className="text-center py-5">
+                <div className="col-md-6 card-login">
+                    <div className="py-4 text-center">
+                        <img className="mb-4" src={userNoImg} alt="" width="76" height="76" />
+                        <h1 className="title-login mb-3 font-weight-normal">Welcome</h1>
+                    </div>
+                    <div className="">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-                            <img className="mb-4" src={iconGlobe} alt="" width="72" height="72" />
-                            <h1 className="h3 mb-3 font-weight-normal">Welcome</h1>
                             <input name="email" type="email"
-                                placeholder="Email" className="form-control"
+                                placeholder="username@gmail.com" className="form-control"
+                                pattern=".+@gmail.com"
+                                title="your email must be @gmail"
                                 ref={register({
                                     required: true,
                                     maxLength: 20
-                                })} /><br />
+                                })} />
                             {errors.email && <span className="text-danger text-small d-block">
                                 Email is required
-                                </span>}
+                                </span>}<br />
                             <input name="password" type="password"
-                                className="form-control" placeholder="Password"
+                                className="form-control" placeholder="password"
                                 ref={register({
                                     required: true,
                                     maxLength: 15
-                                })} /><br />
+                                })} />
                             {errors.password && <span className="text-danger text-small d-block">
                                 Password is required
                                 </span>}
@@ -66,11 +70,18 @@ const Login = () => {
                             {errorGeneral && <span className="text-danger text-small d-block">
                                 {errorGeneral.general}
                             </span>}
-                            <button className="btn btn-lg btn-primary btn-sm"
-                                type="submit" >Login
-                            </button><br />
-                            <span>Don't have an account?</span><br />
-                            <Link to="/signup">Sign in here</Link>
+                            <div className="row">
+                                <div className="col-md-3">
+                                    <button className="btn btn-login btn-primary"
+                                        type="submit" >Login
+                                    </button>
+                                </div>
+                                <div className="col-md-9">
+                                    <span>Don't have an account? </span>
+                                    <Link to="/signup" className="signin-login"> Sign in here</Link>
+                                </div>
+                            </div>
+                            <br />
                         </form>
                     </div>
                 </div>

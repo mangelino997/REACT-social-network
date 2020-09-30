@@ -19,7 +19,7 @@ const Signup = () => {
 
     var loading: boolean = false;
     const [errorGeneral, setErrorGeneral] = useState<any>({});
-    const { register, handleSubmit, errors, setError, getValues, clearErrors  } = useForm<NewUser>();
+    const { register, handleSubmit, errors, setError, getValues, clearErrors } = useForm<NewUser>();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -43,10 +43,10 @@ const Signup = () => {
     // useSelector es un Hook que extrae datos del store de Redux 
     //utilizando una función selectora, seria como el componentWillReceiveProps (sin hooks)
     const p = useSelector((store: any) => store.UI);
-    
+
     // handle change errors
     useEffect(() => {
-        if(p.errors?.general){
+        if (p.errors?.general) {
             setErrorGeneral(p.errors)
         }
     }, [p])
@@ -54,60 +54,72 @@ const Signup = () => {
         <Fragment>
             <div className="row">
                 <div className="col"></div>
-                <div className="col-md-6">
-                    <div className="text-center py-5">
+                <div className="col-md-6 card-login">
+                    <div className="py-4 text-center">
+                        <h1 className="title-login mb-3 font-weight-normal">Sign Up</h1>
+                    </div>
+                    <div className="">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-                            <img className="mb-4" src={iconGlobe} alt="" width="72" height="72" />
-                            <h1 className="h3 mb-3 font-weight-normal">Welcome</h1>
                             <input name="email" type="email"
-                                placeholder="Email" className="form-control"
+                            placeholder="username@gmail.com"
+                                pattern=".+@gmail.com"
+                                title="your email must be @gmail"
+                                className="form-control"
                                 ref={register({
                                     required: true,
                                     maxLength: 20
-                                })} /><br />
+                                })} />
                             {errors.email && <span className="text-danger text-small d-block">
                                 Email is required
-                                </span>}
+                                </span>}<br />
                             <input name="password" type="password"
-                                className="form-control" placeholder="Password"
+                                className="form-control" placeholder="password"
                                 ref={register({
                                     required: true,
                                     minLength: 7,
                                     maxLength: 15
-                                })} /><br />
+                                })} />
                             {errors.password && <span className="text-danger text-small d-block">
                                 Password is required
-                                </span>}
+                                </span>}<br />
                             <input name="confirmPassword" type="password"
-                                className="form-control" placeholder="confirmPassword"
+                                className="form-control" placeholder="repeat password"
                                 onBlur={(e) => checkPassword(e.target.value)}
                                 ref={register({
                                     required: true,
                                     minLength: 7,
                                     maxLength: 15
-                                })} /><br />
-                            {errors.confirmPassword && <span className="text-danger text-small d-block">
-                                Password not match
-                                </span>}
+                                })} />
+                            {errors.confirmPassword &&
+                                <span className="text-danger text-small d-block">
+                                    Password not match
+                                </span>}<br />
                             <input name="handle" type="text"
-                                placeholder="Handle" className="form-control"
+                                placeholder="username" className="form-control"
                                 ref={register({
                                     required: true,
                                     maxLength: 15
-                                })} /><br />
+                                })} />
                             {errors.handle && <span className="text-danger text-small d-block">
-                                Handle is required
-                                </span>}
-                            <br />
+                                Username is required
+                                </span>}<br />
                             {errorGeneral && <span className="text-danger text-small d-block">
                                 {errorGeneral.general}
                             </span>}
-                            <button className="btn btn-lg btn-primary btn-sm"
-                                type="submit">Sign up
-                                {loading && (<CircularProgress size={30} />)}
-                            </button><br />
-                            <span>Have an account?</span><br />
-                            <Link to="/login">Login here</Link>
+
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <button className="btn btn-primary btn-login"
+                                        type="submit">Sign up
+                                        {loading && (<CircularProgress size={30} />)}
+                                    </button>
+                                </div>
+                                <div className="col-md-8">
+                                    <span>Have an account? </span>
+                                    <Link to="/login" className="signin-login"> Login here</Link>
+                                </div>
+                            </div>
+                            <br />
                         </form>
                     </div>
                 </div>

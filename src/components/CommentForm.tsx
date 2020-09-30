@@ -28,7 +28,7 @@ const CommentForm = ({ screamId }: any) => {
 
     // comment form markup
     const commentForm = authenticated ? (
-        <Grid item sm={12} style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center' }}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <textarea rows={2} name="body"
                     placeholder="Comment on scream"
@@ -40,16 +40,21 @@ const CommentForm = ({ screamId }: any) => {
                     })} />
                 {UI.errors?.comment && (<span className="text-danger text-small d-block">
                     {UI.errors?.comment}</span>)}
-                <Button
+                {/* <Button
                     type="submit"
                     color="primary"
                     className=""
                 >
                     Submit
-          </Button>
+          </Button> */}
+                <div className="py-1">
+                    <button className="btn btn-login btn-primary "
+                        type="submit" >Submit
+                </button>
+                </div>
             </form>
             <hr className="visible-separator" />
-        </Grid>
+        </div>
     ) : null;
     return commentForm;
 }

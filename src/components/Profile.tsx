@@ -14,6 +14,7 @@ import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
+import Divider from '@material-ui/core/Divider';
 // Days JS
 import dayjs from 'dayjs';
 import EditDetails from './EditDetails';
@@ -69,7 +70,7 @@ const Profile = () => {
                                     variant="h5">
                                     @{userCredentials.handle}
                                 </MuiLink>
-                                <hr className="invisible-separator" />
+                                <Divider variant="middle" className="margin-divider" />
                                 {userCredentials.bio &&
                                     <Typography>
                                         {userCredentials.bio}
@@ -83,10 +84,10 @@ const Profile = () => {
                                 {userCredentials.website &&
                                     <Fragment>
                                         <LinkIcon />
-                                        <a 
-                                        href={userCredentials.website} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer">
+                                        <a
+                                            href={userCredentials.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer">
                                             {' '}{userCredentials.website}
                                         </a>
                                     </Fragment>
@@ -94,31 +95,37 @@ const Profile = () => {
                                 <hr className="invisible-separator" />
                                 <CalendarToday />
                                 {' '}<span>Joined {dayjs(userCredentials.createdAt).format('MMM YYYY')}</span>
-                                <hr className="invisible-separator" />
-                                <MyButton onClick={handleLogout} tip="Logout">
-                                    <KeyboardReturn color="primary" />
-                                </MyButton>
-                                <EditDetails />
+                                <Divider variant="middle" className="margin-divider" />
+                                <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                    <MyButton onClick={handleLogout} tip="Logout">
+                                        <KeyboardReturn color="primary" />
+                                    </MyButton>
+                                    <EditDetails />
+                                </div>
                             </div>
                         </div>
                     </Paper>
                 </Fragment>
                 : <Fragment>
-                    <Paper className="classes.paper">
+                    <Paper className="py-4">
                         <Typography variant="body2" align="center">
                             No profile found, please login again
                         </Typography>
-                        <div className="classes.buttons">
+                        <div className="no-profile-found py-1">
                             <Button
                                 variant="contained"
+                                size="small"
                                 color="primary"
                                 component={Link}
+                                className="button-no-profile"
                                 to="/login"
                             >Login</Button>
                             <Button
                                 variant="contained"
                                 color="secondary"
+                                size="small"
                                 component={Link}
+                                className="button-no-profile"
                                 to="/signup"
                             > Signup</Button>
                         </div>

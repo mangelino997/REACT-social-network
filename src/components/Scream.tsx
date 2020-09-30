@@ -33,7 +33,7 @@ const Scream = (props: { index: any, openDialog?: boolean }) => {
         
     return (
         <div>
-            <div className="card mb-3" >
+            <div className="card mb-1" >
                 <div className="row no-gutters">
                     <div className="col-md-3">
                         <img src={scream.userImage} className="card-img" alt="media" />
@@ -46,7 +46,7 @@ const Scream = (props: { index: any, openDialog?: boolean }) => {
                                 to={`/users/${scream.userHandle}`}>
                                     {scream.userHandle}
                                 </Typography >
-                                <small> - {dayjs(scream.createdAt).fromNow()}</small>
+                                <small>&nbsp;&nbsp;&nbsp;{dayjs(scream.createdAt).fromNow()}</small>
                             </h5>
                             <span className="delete-button">{deleteButton}</span>
                             <p className="card-text">
