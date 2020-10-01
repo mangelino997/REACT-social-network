@@ -25,7 +25,8 @@ const token = localStorage.getItem("Token");
 //store.dispatch(getScreams());
 // necesario para setear la url de la API, cuando esta en deploy
 // cuando esta en produccion solo usamos el proxy del package.json
-axios.defaults.baseURL = "https://us-central1-react-social-network-6b4e1.cloudfunctions.net/api";
+axios.defaults.baseURL = 'https://us-central1-react-social-network-6b4e1.cloudfunctions.net/api';
+
 if (token) {
   const decodeToken: any = jwt_decode(token);
   if (decodeToken.exp * 1000 < Date.now()) // verificamos si expiro el token
