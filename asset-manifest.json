@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/mangelino997/REACT-social-network/static/css/main.ce4a9ce4.chunk.css",
-    "main.js": "/mangelino997/REACT-social-network/static/js/main.18c2aa20.chunk.js",
-    "main.js.map": "/mangelino997/REACT-social-network/static/js/main.18c2aa20.chunk.js.map",
-    "runtime-main.js": "/mangelino997/REACT-social-network/static/js/runtime-main.297aa326.js",
-    "runtime-main.js.map": "/mangelino997/REACT-social-network/static/js/runtime-main.297aa326.js.map",
-    "static/js/2.a04c805f.chunk.js": "/mangelino997/REACT-social-network/static/js/2.a04c805f.chunk.js",
-    "static/js/2.a04c805f.chunk.js.map": "/mangelino997/REACT-social-network/static/js/2.a04c805f.chunk.js.map",
-    "index.html": "/mangelino997/REACT-social-network/index.html",
-    "precache-manifest.25115cb21f83af25d9f69827d9ee9480.js": "/mangelino997/REACT-social-network/precache-manifest.25115cb21f83af25d9f69827d9ee9480.js",
-    "service-worker.js": "/mangelino997/REACT-social-network/service-worker.js",
-    "static/css/main.ce4a9ce4.chunk.css.map": "/mangelino997/REACT-social-network/static/css/main.ce4a9ce4.chunk.css.map",
-    "static/js/2.a04c805f.chunk.js.LICENSE.txt": "/mangelino997/REACT-social-network/static/js/2.a04c805f.chunk.js.LICENSE.txt",
-    "static/media/no-img.png": "/mangelino997/REACT-social-network/static/media/no-img.5405d77c.png"
+    "main.css": "/REACT-social-network/static/css/main.ce4a9ce4.chunk.css",
+    "main.js": "/REACT-social-network/static/js/main.18c2aa20.chunk.js",
+    "main.js.map": "/REACT-social-network/static/js/main.18c2aa20.chunk.js.map",
+    "runtime-main.js": "/REACT-social-network/static/js/runtime-main.4fb14fe7.js",
+    "runtime-main.js.map": "/REACT-social-network/static/js/runtime-main.4fb14fe7.js.map",
+    "static/js/2.a04c805f.chunk.js": "/REACT-social-network/static/js/2.a04c805f.chunk.js",
+    "static/js/2.a04c805f.chunk.js.map": "/REACT-social-network/static/js/2.a04c805f.chunk.js.map",
+    "index.html": "/REACT-social-network/index.html",
+    "precache-manifest.41fb0e4a5210170386f5c5a88ed9029a.js": "/REACT-social-network/precache-manifest.41fb0e4a5210170386f5c5a88ed9029a.js",
+    "service-worker.js": "/REACT-social-network/service-worker.js",
+    "static/css/main.ce4a9ce4.chunk.css.map": "/REACT-social-network/static/css/main.ce4a9ce4.chunk.css.map",
+    "static/js/2.a04c805f.chunk.js.LICENSE.txt": "/REACT-social-network/static/js/2.a04c805f.chunk.js.LICENSE.txt",
+    "static/media/no-img.png": "/REACT-social-network/static/media/no-img.5405d77c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.297aa326.js",
+    "static/js/runtime-main.4fb14fe7.js",
     "static/js/2.a04c805f.chunk.js",
     "static/css/main.ce4a9ce4.chunk.css",
     "static/js/main.18c2aa20.chunk.js"
