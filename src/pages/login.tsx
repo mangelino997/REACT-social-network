@@ -47,7 +47,7 @@ const Login = () => {
                     </div>
                     <div className="">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-                            <input name="email" type="email"
+                            <input name="email" type="text"
                                 placeholder="your email" className="form-control"
                                 pattern=".+@gmail.com"
                                 title="your email must be @gmail"
