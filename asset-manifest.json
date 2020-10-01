@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/mangelino997/REACT-social-network.git/static/css/main.ce4a9ce4.chunk.css",
+    "main.js": "/mangelino997/REACT-social-network.git/static/js/main.18c2aa20.chunk.js",
+    "main.js.map": "/mangelino997/REACT-social-network.git/static/js/main.18c2aa20.chunk.js.map",
+    "runtime-main.js": "/mangelino997/REACT-social-network.git/static/js/runtime-main.6bd1da85.js",
+    "runtime-main.js.map": "/mangelino997/REACT-social-network.git/static/js/runtime-main.6bd1da85.js.map",
+    "static/js/2.a04c805f.chunk.js": "/mangelino997/REACT-social-network.git/static/js/2.a04c805f.chunk.js",
+    "static/js/2.a04c805f.chunk.js.map": "/mangelino997/REACT-social-network.git/static/js/2.a04c805f.chunk.js.map",
+    "index.html": "/mangelino997/REACT-social-network.git/index.html",
+    "precache-manifest.5d24d543e1d36f2e89b7c8c0ebbfa81f.js": "/mangelino997/REACT-social-network.git/precache-manifest.5d24d543e1d36f2e89b7c8c0ebbfa81f.js",
+    "service-worker.js": "/mangelino997/REACT-social-network.git/service-worker.js",
+    "static/css/main.ce4a9ce4.chunk.css.map": "/mangelino997/REACT-social-network.git/static/css/main.ce4a9ce4.chunk.css.map",
+    "static/js/2.a04c805f.chunk.js.LICENSE.txt": "/mangelino997/REACT-social-network.git/static/js/2.a04c805f.chunk.js.LICENSE.txt",
+    "static/media/no-img.png": "/mangelino997/REACT-social-network.git/static/media/no-img.5405d77c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6bd1da85.js",
+    "static/js/2.a04c805f.chunk.js",
+    "static/css/main.ce4a9ce4.chunk.css",
+    "static/js/main.18c2aa20.chunk.js"
+  ]
+}
