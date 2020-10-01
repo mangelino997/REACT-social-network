@@ -1,4 +1,5 @@
 {
+  "homepage": "https://github.com/mangelino997/REACT-social-network.git/",
   "name": "social-network",
   "version": "0.1.0",
   "private": true,
@@ -29,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,7 +52,8 @@
   "devDependencies": {
     "@types/jwt-decode": "^2.2.1",
     "@types/react-redux": "^7.1.9",
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "gh-pages": "^3.1.0"
   },
   "proxy": "https://us-central1-react-social-network-6b4e1.cloudfunctions.net/api"
 }
