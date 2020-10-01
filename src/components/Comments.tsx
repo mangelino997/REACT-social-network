@@ -74,7 +74,7 @@ const Comments = ({ id }: any) => {
                                             color="textSecondary"
                                             display="inline"
                                         >
-                                            &nbsp;&nbsp;&nbsp;{dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                                            &nbsp;&nbsp;-&nbsp;{dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
                                         <Typography variant="body1">
                                             {body}

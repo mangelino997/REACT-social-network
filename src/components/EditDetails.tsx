@@ -99,18 +99,9 @@ const EditDetails = () => {
                                 maxLength: 40
                             })} />
                         <DialogActions>
-                            {/* <Button 
-                                color="primary"
-                                onClick={handleClose}>
-                                Cancel
-                            </Button>
-                            <Button type="submit"
-                                color="primary">
-                                Save
-                            </Button> */}
                             <button onClick={handleClose}
                             type="button"
-                                className="btn btn-login btn-secondary ">
+                                className="btn btn-link ">
                                 Cancel
                             </button>
                             <button type="submit"

@@ -10,7 +10,8 @@ import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 // Material
-import { Paper } from '@material-ui/core';
+import { Avatar, CircularProgress, createStyles, makeStyles, Paper, Theme, withStyles } from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
@@ -20,8 +21,53 @@ import dayjs from 'dayjs';
 import EditDetails from './EditDetails';
 import { MyButton } from '../util/MyButton';
 
+const StyledBadge = withStyles((theme: Theme) =>
+    createStyles({
+        badge: {
+            backgroundColor: '#44b700',
+            color: '#44b700',
+            boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+            '&::after': {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                animation: '$ripple 1.2s infinite ease-in-out',
+                border: '1px solid currentColor',
+                content: '""',
+            },
+        },
+        '@keyframes ripple': {
+            '0%': {
+                transform: 'scale(.8)',
+                opacity: 1,
+            },
+            '100%': {
+                transform: 'scale(2.4)',
+                opacity: 0,
+            },
+        },
+    }),
+)(Badge);
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+        large: {
+            width: theme.spacing(24),
+            height: theme.spacing(24),
+        },
+    }),
+);
 const Profile = () => {
 
+    const classes = useStyles();
     // useSelector es un Hook que nos permite extraer datos del store de Redux 
     const loadingUser = useSelector((store: any) => store.user.loading);
     const authenticated = useSelector((store: any) => store.user.authenticated);
@@ -53,37 +99,47 @@ const Profile = () => {
             authenticated ?
                 <Fragment>
                     <Paper className="classes.paper">
-                        <div className="classes.profile">
+                        <div className="card-profile">
                             <div className="wrapper-image">
-                                <img src={userCredentials.imageUrl} alt="profile"
-                                    className="profile-image" />
+                                <StyledBadge
+                                    overlap="circle"
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'right',
+                                    }}
+                                    variant="dot"
+                                >
+                                    <Avatar src={userCredentials.imageUrl}
+                                        alt="profile" className={classes.large} />
+                                </StyledBadge>
+
                                 <input type="file" id="imageInput" hidden={true}
                                     onChange={handleImageChange} />
                                 <MyButton onClick={handleEditPicture} tip="Edit profile picture">
                                     <EditIcon color="primary" />
                                 </MyButton>
                             </div>
-                            <hr className="invisible-separator" />
                             <div className="profile-details">
                                 <MuiLink
                                     component={Link} to={`/users/${userCredentials.handle}`}
                                     variant="h5">
                                     @{userCredentials.handle}
                                 </MuiLink>
-                                <Divider variant="middle" className="margin-divider" />
+                                <hr />
                                 {userCredentials.bio &&
                                     <Typography>
                                         {userCredentials.bio}
                                     </Typography>}
+                                <hr />
                                 {userCredentials.location &&
                                     <Fragment>
                                         <LocationOn />
                                         <span> {userCredentials.location}</span>
-                                        <br />
                                     </Fragment>}
+                                <hr />
                                 {userCredentials.website &&
                                     <Fragment>
-                                        <LinkIcon />
+                                        <LinkIcon color="primary" />
                                         <a
                                             href={userCredentials.website}
                                             target="_blank"
@@ -91,11 +147,12 @@ const Profile = () => {
                                             {' '}{userCredentials.website}
                                         </a>
                                     </Fragment>
+
                                 }
-                                <hr className="invisible-separator" />
+                                <hr />
                                 <CalendarToday />
                                 {' '}<span>Joined {dayjs(userCredentials.createdAt).format('MMM YYYY')}</span>
-                                <Divider variant="middle" className="margin-divider" />
+                                <hr />
                                 <div style={{ display: "flex", justifyContent: "space-around" }}>
                                     <MyButton onClick={handleLogout} tip="Logout">
                                         <KeyboardReturn color="primary" />
@@ -132,7 +189,7 @@ const Profile = () => {
                     </Paper>
                 </Fragment>
             : <Fragment>
-                <p>loading..</p>
+                <CircularProgress />
             </Fragment>
     )
 }

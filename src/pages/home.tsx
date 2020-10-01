@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // components
 import Scream from '../components/Scream';
 import Profile from '../components/Profile';
@@ -6,7 +6,7 @@ import Profile from '../components/Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { getScreams } from '../redux/actions/dataActions';
 // Material
-// import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Home = () => {
 
@@ -21,41 +21,36 @@ const Home = () => {
     }, [])
 
     return (
-        <Fragment>
+        <>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-4 margin-bottom-profile">
-                    <Profile />
+                    <div className="col-md-4 margin-bottom-profile ">
+                        <Profile />
                     </div>
                     <div className="col-md-8">
-                    {!loading ? (screams.map((scream: any, index: number) =>
-                        <Scream
-                            key={scream.screamId}
-                            index={index}></Scream>
-                    )) :
-                        <p>Loading ...</p>
-                    }
+                        {/* <div className="row justify-content-md-center">
+                            <div className="col-md-4">
+                                <div className="box">
+                                    <h6>Must Liked</h6>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="box">
+                                    <h6>Must Comments</h6>
+                                </div>
+                            </div>
+                        </div> */}
+                        {!loading ? (screams.map((scream: any, index: number) =>
+                            <Scream
+                                key={scream.screamId}
+                                index={index}></Scream>
+                        )) :
+                            <CircularProgress />
+                        }
                     </div>
                 </div>
             </div>
-            {/* <Grid container spacing={3}>
-                <Grid item xs={4}>
-                    <Profile />
-                </Grid>
-                <Grid item xs={8}>
-                    {!loading ? (screams.map((scream: any, index: number) =>
-                        <Scream
-                            key={scream.screamId}
-                            index={index}></Scream>
-                    )) :
-                        <p>Loading ...</p>
-                    }
-                </Grid>
-            </Grid> */}
-            {/* <div className="footer">
-                <PostScream />
-            </div> */}
-        </Fragment>
+        </>
     )
 }
 export default Home;

@@ -10,7 +10,7 @@ import { deleteScream } from '../redux/actions/dataActions';
 import { MyButton } from '../util/MyButton';
 import { useDispatch } from 'react-redux';
 
-const DeletScream = ({screamId}: any) => {
+const DeletScream = ({ screamId }: any) => {
 
     // state
     const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ const DeletScream = ({screamId}: any) => {
 
     // necessary for the Reducer
     const dispatch = useDispatch();
-    
+
     // handle delete scream
     const deleteCurrentScream = () => {
         dispatch(deleteScream(screamId));
@@ -51,12 +51,16 @@ const DeletScream = ({screamId}: any) => {
                     Are you sure you want to delete this scream ?
           </DialogTitle>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <button onClick={handleClose}
+                        type="button"
+                        className="btn btn-link ">
                         Cancel
-                    </Button>
-                    <Button onClick={deleteCurrentScream} color="secondary">
+                            </button>
+                    <button onClick={deleteCurrentScream}
+                        type="button"
+                        className="btn btn-login btn-primary " >
                         Delete
-                    </Button>
+                            </button>
                 </DialogActions>
             </Dialog>
         </Fragment>

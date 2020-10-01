@@ -24,7 +24,7 @@ const Signup = () => {
     const history = useHistory();
 
     const onSubmit = (data: NewUser) => {
-        // loading = true;
+        loading = true;
         dispatch(signupUser(data, history));
     }
 
@@ -61,7 +61,7 @@ const Signup = () => {
                     <div className="">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
                             <input name="email" type="email"
-                            placeholder="username@gmail.com"
+                                placeholder="your email"
                                 pattern=".+@gmail.com"
                                 title="your email must be @gmail"
                                 className="form-control"
@@ -69,6 +69,7 @@ const Signup = () => {
                                     required: true,
                                     maxLength: 20
                                 })} />
+                                <small>Example: username@gmail.com</small>
                             {errors.email && <span className="text-danger text-small d-block">
                                 Email is required
                                 </span>}<br />
@@ -79,6 +80,7 @@ const Signup = () => {
                                     minLength: 7,
                                     maxLength: 15
                                 })} />
+                            <small>Must have at least 6 characters</small>
                             {errors.password && <span className="text-danger text-small d-block">
                                 Password is required
                                 </span>}<br />
@@ -90,6 +92,7 @@ const Signup = () => {
                                     minLength: 7,
                                     maxLength: 15
                                 })} />
+                            <small>Must match password</small>
                             {errors.confirmPassword &&
                                 <span className="text-danger text-small d-block">
                                     Password not match

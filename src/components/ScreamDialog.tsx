@@ -143,7 +143,6 @@ const ScreamDialog = (props: { scream: any, openDialog?: boolean }) => {
                 <DialogContent className="dialog-content">
                     {dialogMarkUp}
                 </DialogContent>
-                <hr />
                 <DialogActions>
                     <Button
                         color="primary"

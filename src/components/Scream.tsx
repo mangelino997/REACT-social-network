@@ -46,7 +46,7 @@ const Scream = (props: { index: any, openDialog?: boolean }) => {
                                 to={`/users/${scream.userHandle}`}>
                                     {scream.userHandle}
                                 </Typography >
-                                <small>&nbsp;&nbsp;&nbsp;{dayjs(scream.createdAt).fromNow()}</small>
+                                <small>&nbsp;&nbsp;-&nbsp;{dayjs(scream.createdAt).fromNow()}</small>
                             </h5>
                             <span className="delete-button">{deleteButton}</span>
                             <p className="card-text">

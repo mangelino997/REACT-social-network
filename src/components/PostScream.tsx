@@ -65,7 +65,7 @@ const PostScream = () => {
                                 required: true,
                                 maxLength: 150
                             })} /><br />
-                        <Button
+                        {/* <Button
                             type="submit"
                             variant="contained"
                             color="primary"
@@ -84,7 +84,24 @@ const PostScream = () => {
                             onClick={handleClose}
                         >
                             <CloseIcon />
-                        </MyButton>
+                        </MyButton> */}
+
+                        <button onClick={handleClose}
+                            type="button"
+                            className="btn btn-link">
+                            Cancel
+                            </button>
+                        <button type="submit"
+                            className="btn btn-login btn-primary "
+                            disabled={loading} >
+                            Submit
+                            {loading && (
+                                <CircularProgress
+                                    className="progress-spiner"
+                                    size={30}
+                                />
+                            )}
+                        </button>
                     </form>
                 </DialogContent>
             </Dialog>

@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 // redux staff
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
+import { CircularProgress } from '@material-ui/core';
 
 type Inputs = {
     email: string,
@@ -13,7 +14,7 @@ type Inputs = {
 };
 const Login = () => {
 
-    // var loading: boolean = false;
+    let loading: boolean = false;
     const [errorGeneral, setErrorGeneral] = useState<any>({});
     const { register, handleSubmit, errors } = useForm<Inputs>();
     // necesarios para los Reducer
@@ -21,7 +22,7 @@ const Login = () => {
     const history = useHistory();
 
     const onSubmit = (data: Inputs) => {
-        //loading = true;
+        loading = true;
         dispatch(loginUser(data, history));
     }
 
@@ -47,13 +48,14 @@ const Login = () => {
                     <div className="">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
                             <input name="email" type="email"
-                                placeholder="username@gmail.com" className="form-control"
+                                placeholder="your email" className="form-control"
                                 pattern=".+@gmail.com"
                                 title="your email must be @gmail"
                                 ref={register({
                                     required: true,
                                     maxLength: 20
                                 })} />
+                                <small>Example: username@gmail.com</small>
                             {errors.email && <span className="text-danger text-small d-block">
                                 Email is required
                                 </span>}<br />
@@ -61,8 +63,10 @@ const Login = () => {
                                 className="form-control" placeholder="password"
                                 ref={register({
                                     required: true,
+                                    minLength: 7,
                                     maxLength: 15
                                 })} />
+                                <small>Must have at least 6 characters</small>
                             {errors.password && <span className="text-danger text-small d-block">
                                 Password is required
                                 </span>}
@@ -74,6 +78,7 @@ const Login = () => {
                                 <div className="col-md-3">
                                     <button className="btn btn-login btn-primary"
                                         type="submit" >Login
+                                        {loading && (<CircularProgress color="secondary" size={30} />)}
                                     </button>
                                 </div>
                                 <div className="col-md-9">
@@ -87,6 +92,7 @@ const Login = () => {
                 </div>
                 <div className="col"></div>
             </div>
+            
         </Fragment>
     )
 }

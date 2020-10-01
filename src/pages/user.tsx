@@ -8,6 +8,7 @@ import StaticProfile from '../components/StaticProfile';
 import Scream from '../components/Scream';
 // Material
 import Grid from '@material-ui/core/Grid';
+import { CircularProgress } from '@material-ui/core';
 
 const User = () => {
 
@@ -20,7 +21,8 @@ const User = () => {
 
     // set screamsMarkup
     const screamsMarkup = loading ? (
-        <p>Loading data...</p>
+        // <p>Loading data...</p>
+        <CircularProgress />
     ) : screams === null ? (
         <p>No screams from this user</p>
     ) : screamIdParam === undefined ? (
@@ -46,26 +48,27 @@ const User = () => {
             .catch((err: any) => {
                 console.log(err);
             })
-            
+
     }, [handleParam])
 
     return (
         <>
-            <Grid container spacing={10}>
-                <Grid item sm={8} xs={12}>
-                <h3 className="title-login mb-3 font-weight-normal">My screams</h3>
-                    <hr className="invisible-separator" />
-                    {screamsMarkup}
-                </Grid>
-                <Grid item sm={4} xs={12}>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-4 margin-bottom-profile">
+                        {profile === null ? (
+                            // <p>Loading profile...</p>
+                            <CircularProgress />
+                        ) : (
+                                <StaticProfile profile={profile} />
+                            )}
+                    </div>
+                    <div className="col-md-8">
+                        {screamsMarkup}
+                    </div>
+                </div>
+            </div>
 
-                    {profile === null ? (
-                        <p>Loading profile...</p>
-                    ) : (
-                            <StaticProfile profile={profile} />
-                        )}
-                </Grid>
-            </Grid>
         </>
     )
 }
