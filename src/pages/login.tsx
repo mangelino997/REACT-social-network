@@ -53,7 +53,7 @@ const Login = () => {
                                 title="your email must be @gmail"
                                 ref={register({
                                     required: true,
-                                    maxLength: 20
+                                    maxLength: 50
                                 })} />
                                 <small>Example: username@gmail.com</small>
                             {errors.email && <span className="text-danger text-small d-block">

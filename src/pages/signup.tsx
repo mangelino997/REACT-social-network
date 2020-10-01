@@ -67,7 +67,7 @@ const Signup = () => {
                                 className="form-control"
                                 ref={register({
                                     required: true,
-                                    maxLength: 20
+                                    maxLength: 50
                                 })} />
                                 <small>Example: username@gmail.com</small>
                             {errors.email && <span className="text-danger text-small d-block">
