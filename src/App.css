@@ -226,3 +226,8 @@ small {
     color: #fff;
     font-weight: 600;
 }
+
+.container-comment {
+    display: flex;
+    align-items: center;
+}

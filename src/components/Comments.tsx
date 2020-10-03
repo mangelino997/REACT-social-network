@@ -52,7 +52,38 @@ const Comments = ({ id }: any) => {
                 return (
                     <Fragment key={createdAt}>
                         <Grid item sm={12}>
-                            <Grid container>
+
+                            <div className="container-comment">
+                                <div><Avatar alt="comment-image"
+                                    src={userImage}
+                                    className={classes.large} /></div>
+                                <div>
+                                    <div className="comment-data" >
+                                        <Typography
+                                            variant="h6"
+                                            component={Link}
+                                            to={`/users/${userHandle}`}
+                                            color="primary"
+                                            display="inline"
+                                        >
+                                            {userHandle}
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            color="textSecondary"
+                                            display="inline"
+                                        >
+                                            &nbsp;&nbsp;-&nbsp;{dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {body}
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {/* <Grid container>
                                 <Grid item sm={2}>
                                     <Avatar alt="comment-image"
                                         src={userImage}
@@ -81,7 +112,7 @@ const Comments = ({ id }: any) => {
                                         </Typography>
                                     </div>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
                             <Divider variant="inset" />
                         </Grid>
                     </Fragment>
